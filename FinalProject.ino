@@ -66,17 +66,18 @@ void loop() {
     distance += measure(trigpin2, echopin2) + 2.54;
     digitalWrite(ledPin2, HIGH);
   }
+
+  // Serial Log
   Serial.println("Distancia sumada");
   Serial.println((long) distance);
-  //Serial.print(distance);
-  //Serial.println(" cm");
-  //transmit((char) distance);
   sprintf(buffer1,"distancia %d \n",distance);
+  // Bluetooth transmission
   transmit(buffer1);
   _delay_ms(1000);
   
 }
 
+// Bluetooth transmission
 void transmit( char *data ) {
   Serial.println(data);
   for(int x=0;x<strlen(data);x++)
